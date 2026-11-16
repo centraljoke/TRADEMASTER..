@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trade Master | Trading Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="app-shell">
+
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#">
+      <span class="brand-mark">TM</span>
+      <span>TRADE <b>MASTER</b></span>
+    </a>
+
+    <div class="mode-card">
+      <small>ACCOUNT MODE</small>
+      <div class="mode-switch">
+        <button id="demoMode" class="mode active">DEMO</button>
+        <button id="realMode" class="mode">REAL</button>
+      </div>
+      <p id="modeNote">Practice with virtual funds</p>
+    </div>
+
+    <nav>
+      <a class="nav-link selected" href="#dashboard">▦ Dashboard</a>
+      <a class="nav-link" href="#markets">◈ Markets</a>
+      <a class="nav-link" href="#trade">↗ Trade</a>
+      <a class="nav-link" href="#scanner">⌕ AI Scanner</a>
+      <a class="nav-link" href="#history">◷ Trade History</a>
+      <a class="nav-link" href="#wallet">▣ Wallet</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="security-note">🔒 Secure account prototype</div>
+      <small>TRADE MASTER © 2026</small>
+    </div>
+  </aside>
+
+  <main class="main-content" id="dashboard">
+
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <div>
+        <span class="eyebrow">TRADING TERMINAL</span>
+        <h1>Dashboard</h1>
+      </div>
+      <div class="top-actions">
+        <span class="market-status">● Market simulation online</span>
+        <div class="avatar">OW</div>
+      </div>
+    </header>
+
+    <section class="notice" id="accountNotice">
+      <b>DEMO ENVIRONMENT</b> — Simulated trading only.
+    </section>
+
+    <section class="stats-grid">
+      <article class="stat-card balance-card">
+        <span class="stat-label">ACCOUNT BALANCE</span>
+        <div class="stat-value" id="balance">$5,300.00</div>
+        <span class="stat-foot" id="balanceFoot">
+          Virtual demo funds
+        </span>
+      </article>
+
+      <article class="stat-card">
+        <span class="stat-label">OPEN POSITIONS</span>
+        <div class="stat-value" id="openCount">0</div>
+        <span class="stat-foot">Simulated trades</span>
+      </article>
+
+      <article class="stat-card">
+        <span class="stat-label">TODAY'S P/L</span>
+        <div class="stat-value" id="dailyPL">$0.00</div>
+        <span class="stat-foot">Demo performance</span>
+      </article>
+
+      <article class="stat-card">
+        <span class="stat-label">ACCOUNT TYPE</span>
+        <div class="stat-value small-value" id="accountType">DEMO</div>
+        <span class="stat-foot">Owner workspace</span>
+      </article>
+    </section>
+
+    <section class="workspace-grid">
+
+      <article class="panel chart-panel" id="markets">
+        <div class="panel-heading">
+          <div>
+            <span class="eyebrow">SIMULATED FEED</span>
+            <h2>Market Overview</h2>
+          </div>
+
+          <select id="marketSelect">
+            <option>Volatility 100 Index</option>
+            <option>Volatility 75 Index</option>
+            <option>Volatility 50 Index</option>
+            <option>Volatility 25 Index</option>
+            <option>Volatility 10 Index</option>
+          </select>
+        </div>
+
+        <div class="price-row">
+          <strong id="currentPrice">10,482.65</strong>
+          <span class="positive" id="priceChange">+0.42%</span>
+        </div>
+
+        <div class="chart-wrap">
+          <canvas id="priceChart"></canvas>
+        </div>
+
+        <div class="chart-legend">
+          <span>● Price movement</span>
+          <span>1M · 5M · 15M · 1H</span>
+        </div>
+      </article>
+
+      <article class="panel trade-panel" id="trade">
+        <div class="panel-heading">
+          <div>
+            <span class="eyebrow">QUICK ORDER</span>
+            <h2>Place a Trade</h2>
+          </div>
+          <span class="tag">PRACTICE</span>
+        </div>
+
+        <label for="contract">Contract Type</label>
+        <select id="contract">
+          <option>Rise / Fall</option>
+          <option>Even / Odd</option>
+          <option>Over / Under</option>
+          <option>Match / Differ</option>
+        </select>
+
+        <label for="stake">Stake Amount (USD)</label>
+        <div class="input-wrap">
+          <span>$</span>
+          <input id="stake" type="number" min="1" value="10">
+        </div>
+
+        <label for="duration">Duration</label>
+        <select id="duration">
+          <option value="1">1 minute</option>
+          <option value="5">5 minutes</option>
+          <option value="15">15 minutes</option>
+        </select>
+
+        <div class="payout-box">
+          <span>Indicative payout</span>
+          <b id="payout">$19.00</b>
+          <small>Illustrative only.</small>
+        </div>
+
+        <div class="trade-buttons">
+          <button class="buy-btn" id="riseBtn">↗ RISE</button>
+          <button class="sell-btn" id="fallBtn">↘ FALL</button>
+        </div>
+
+        <p class="form-message" id="tradeMessage">
+          Select an amount and direction.
+        </p>
+      </article>
+    </section>
+
+    <section class="bottom-grid">
+
+      <article class="panel" id="scanner">
+        <div class="panel-heading">
+          <div>
+            <span class="eyebrow">MARKET TOOLS</span>
+            <h2>AI Market Scanner</h2>
+          </div>
+          <span class="tag">DEMO ANALYSIS</span>
+        </div>
+
+        <p class="muted">
+          Sample market analysis. Signals do not guarantee results.
+        </p>
+
+        <div class="scanner-result">
+          <div>
+            <span class="eyebrow">SAMPLE SIGNAL</span>
+            <h3 id="signalText">Calculating...</h3>
+          </div>
+
+          <div class="signal-meter">
+            <span id="signalMeter"></span>
+          </div>
+
+          <b id="signalStrength">—</b>
+        </div>
+
+        <button class="outline-btn" id="scanBtn">
+          Run Sample Scan
+        </button>
+      </article>
+
+      <article class="panel" id="wallet">
+        <div class="panel-heading">
+          <div>
+            <span class="eyebrow">ACCOUNT FUNDS</span>
+            <h2>Wallet</h2>
+          </div>
+        </div>
+
+        <div class="wallet-line">
+          <span>Demo Wallet</span>
+          <b id="demoWallet">$5,300.00</b>
+        </div>
+
+        <div class="wallet-line">
+          <span>Real Wallet</span>
+          <b id="realWallet">$0.00</b>
+        </div>
+
+        <p class="muted tiny">
+          The $5,300 is virtual demo credit, not withdrawable money.
+          Real funds require verified deposits.
+        </p>
+
+        <button class="outline-btn" id="depositBtn">
+          Real Account Funding Setup
+        </button>
+      </article>
+    </section>
+
+    <section class="panel history-panel" id="history">
+      <div class="panel-heading">
+        <div>
+          <span class="eyebrow">ACTIVITY</span>
+          <h2>Recent Trades</h2>
+        </div>
+        <span class="tag">SIMULATED</span>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Market</th>
+              <th>Contract</th>
+              <th>Direction</th>
+              <th>Stake</th>
+              <th>Status</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody id="historyBody">
+            <tr>
+              <td colspan="6" class="empty-row">
+                No trades yet.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      Trade Master is a prototype, not a brokerage service.
+      Real trading requires a licensed broker and verified funding.
+    </footer>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
